@@ -1,0 +1,26 @@
+# FastAPI and dependencies
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.6
+
+# Database
+sqlalchemy==2.0.25
+asyncpg==0.29.0
+alembic==1.13.1
+
+# Pydantic
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# S3 / MinIO
+aiobotocore==2.11.0
+boto3==1.34.17
+types-aiobotocore==2.11.0
+types-aiobotocore-s3==2.11.0
+
+# File handling
+aiofiles==23.2.1
+python-magic==0.4.27
+
+# Utils
+python-dotenv==1.0.0
