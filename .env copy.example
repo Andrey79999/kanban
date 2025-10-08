@@ -1,0 +1,31 @@
+# Board Service Configuration
+BOARD_DATABASE_URL=postgresql+asyncpg://postgres:postgres@postgres:5432/board_db
+FILE_SERVICE_URL=http://file_service:8001
+BOARD_PORT=8000
+
+# File Service Configuration
+FILE_DATABASE_URL=postgresql+asyncpg://postgres:postgres@postgres:5432/file_db
+FILE_PORT=8001
+
+# MinIO (S3) Configuration
+MINIO_ENDPOINT=minio:9000
+MINIO_ACCESS_KEY=minioadmin
+MINIO_SECRET_KEY=minioadmin
+MINIO_BUCKET_NAME=kanban-files
+MINIO_SECURE=false
+
+# PostgreSQL Configuration
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=board_db
+
+# CORS Origins (comma-separated)
+CORS_ORIGINS=["http://localhost:3000","http://localhost:8000","http://localhost:8001"]
+
+# Application Settings
+DEBUG=true
+LOG_LEVEL=INFO
+
+# File Upload Limits
+MAX_FILE_SIZE_MB=10
+ALLOWED_FILE_EXTENSIONS=.pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.gif
