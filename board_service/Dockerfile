@@ -1,21 +1,29 @@
-FROM python:3.12-slim
+FROM python:3.12-slim as builder
 
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
     gcc \
-    postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.prod.txt .
+RUN pip install --no-cache-dir --user -r requirements.prod.txt
 
-COPY . .
+FROM python:3.12-slim
 
-RUN mkdir -p /app/alembic
+WORKDIR /app
 
-# Настройка PYTHONPATH для импортов
-ENV PYTHONPATH=/app
+RUN useradd -m -u 1000 appuser && \
+    mkdir -p /app/alembic && \
+    chown -R appuser:appuser /app
+
+COPY --from=builder /root/.local /home/appuser/.local
+
+COPY --chown=appuser:appuser . .
+
+ENV PATH=/home/appuser/.local/bin:$PATH
+
+USER appuser
 
 EXPOSE 8000
 
